@@ -25,10 +25,10 @@ if($FileSize > 10000000) {
     return;
 }
 
-$fileDestination = "../assets/uploads/" . uniqid() . $fileName;
+$fileDestination = "../../imgs/uploadedPics/" . uniqid() . $fileName;
 
-if(!file_exists("../assets/uploads")) {
-    mkdir("../assets/uploads");
+if(!file_exists("../../imgs/uploadedPics")) {
+    mkdir("../../imgs/uploadedPics");
 }
 
 if(count($errors) === 0) {

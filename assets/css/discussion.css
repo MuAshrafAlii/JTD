@@ -1,12 +1,4 @@
-*,
-html {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-  background-color: #edede9;
-  font-family: "Courier New", Courier, monospace;
-}
-
+@import url("./common.css");
 .title {
   text-align: center;
   padding: 30px 20px;
@@ -21,20 +13,21 @@ html {
   min-height: fit-content;
 }
 
-.titles {
-  display: grid;
-  grid-template-columns: 1fr 2fr 4fr 1fr 1fr;
+.cmntTitleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid lightgray;
 }
 
-.titles * {
-  border: 2px solid lightgray;
-  text-align: center;
-  font-size: 30px;
+.cmntTitle {
+  font-size: 40px;
+  font-weight: 300;
 }
 
 .commentDetails {
   display: grid;
-  grid-template-columns: 1fr 2fr 4fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 5fr 1fr /* 1fr */;
   align-items: center;
   border-bottom: 2px lightgray solid;
 }
@@ -92,6 +85,7 @@ html {
 
 .edit {
   background-color: #ffbe0b;
+  margin-bottom: 20px;
 }
 
 .delete {

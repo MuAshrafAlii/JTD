@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/login_register.css" />
+    <script src="./assets/logic/login_register.js" defer></script>
+    <title>JTD - Register</title>
+  </head>
+  <body>
+    <div class="formOuterContainer">
+      <div class="formInnerContainer">
+        <form class="regForm">
+          <div class="inputContainer">
+            <label for="regUn" class="inputLabel">Username</label>
+            <input type="text" id="regUn" class="formInput" />
+            <p class="error">This username is wrong</p>
+          </div>
+          <div class="inputContainer">
+            <label for="regFn" class="inputLabel">First Name</label>
+            <input type="text" id="regFn" class="formInput" />
+            <p class="error">This username is wrong</p>
+          </div>
+          <div class="inputContainer">
+            <label for="regLn" class="inputLabel">Last Name</label>
+            <input type="text" id="regLn" class="formInput" />
+            <p class="error">This username is wrong</p>
+          </div>
+          <div class="inputContainer">
+            <label for="regEmail1" class="inputLabel">Email</label>
+            <input type="email" id="regEmail1" class="formInput" />
+            <p class="error">This username is wrong</p>
+          </div>
+          <div class="inputContainer">
+            <label for="regEmail2" class="inputLabel">Confirm Email</label>
+            <input type="email" id="regEmail2" class="formInput" />
+            <p class="error">This username is wrong</p>
+          </div>
+          <div class="inputContainer">
+            <label for="regPw1" class="inputLabel">Password</label>
+            <input type="password" id="regPw1" class="formInput" />
+            <p class="error">This username is wrong</p>
+          </div>
+          <div class="inputContainer">
+            <label for="regPw2" class="inputLabel">Confirm Password</label>
+            <input type="password" id="regPw2" class="formInput" />
+            <p class="error">This username is wrong</p>
+          </div>
+          <div class="btnSwitcherContainer">
+            <button type="submit" class="formBtn">Register</button>
+            <p class="switcher">
+              Have an Account? <span class="logSwitcher">Log In</span>
+            </p>
+          </div>
+        </form>
+
+        <form class="logForm" style="display: none">
+          <div class="inputContainer">
+            <label for="logEnter" class="inputLabel"
+              >Enter your Username Or Email</label
+            >
+            <input type="text" id="logEnter" class="formInput" />
+            <p class="error">This username is wrong</p>
+          </div>
+
+          <div class="inputContainer">
+            <label for="logPw" class="inputLabel">Enter your Password</label>
+            <input type="password" id="logPw" class="formInput" />
+            <p class="error">This username is wrong</p>
+          </div>
+          <div class="btnSwitcherContainer">
+            <button type="submit" class="formBtn">Log in</button>
+            <p class="switcher">
+              Don't Have an Account?
+              <span class="regSwitcher">Register</span>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="heroImgContainer">
+      <img src="./assets/imgs/group2.jpg" alt="Group" class="heroImg" />
+    </div>
+  </body>
+</html>
