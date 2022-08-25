@@ -17,7 +17,6 @@ function handleImgUpload() {
   xhr.onreadystatechange = () => {
     // Call a function when the state changes.
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      console.log(xhr.response);
       let response = JSON.parse(xhr.response);
       if (response.length > 0) {
         alert(response[0]);

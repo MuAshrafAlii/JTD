@@ -1,3 +1,6 @@
+import * as regValidation from "./regValidation.js";
+import * as logValidation from "./logValidation.js";
+
 const inputs = document.querySelectorAll("input"),
   regForm = document.querySelector(".regForm"),
   logForm = document.querySelector(".logForm"),
@@ -9,10 +12,24 @@ const inputs = document.querySelectorAll("input"),
   regEmail1 = document.querySelector("#regEmail1"),
   regEmail2 = document.querySelector("#regEmail2"),
   regPw1 = document.querySelector("#regPw1"),
-  regPw2 = document.querySelector("#regPw2"),
-  errorsArray = {};
+  regPw2 = document.querySelector("#regPw2");
+export const logUn_email = document.querySelector("#logUn_email");
+export const logPw = document.querySelector("#logPw");
 
 /* FUNCTIONS */
+
+export function showError(input, errorText, error) {
+  errorText.innerText = error;
+  if (error === undefined) {
+    input.classList.remove("errorInput");
+    input.classList.add("rightInput");
+    errorText.style.display = "none";
+  } else {
+    input.classList.remove("rightInput");
+    input.classList.add("errorInput");
+    errorText.style.display = "block";
+  }
+}
 
 function inputFocusInHandler(e) {
   const inputLabel = e.path[1].querySelector("label");
@@ -40,71 +57,6 @@ function regSwitcherHandler() {
   document.title = "JTD --- Register";
 }
 
-function chechUnTaken(un) {
-  return new Promise((resolve) => {
-    let xhr = new XMLHttpRequest();
-
-    xhr.open("POST", "./assets/php/handlers/checkUnTakenHandler.php");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    xhr.onreadystatechange = () => {
-      // Call a function when the state changes.
-      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        if (xhr.response > 0) {
-          resolve("taken");
-        }
-        resolve("Not Taken");
-      }
-    };
-
-    xhr.send(`regUn=${un}`);
-  });
-}
-
-async function regUnValidation(e) {
-  let errorText = e.path[1].querySelector(".error");
-  let checkUnTakenResult = await chechUnTaken(regUn.value);
-
-  if (regUn.value === "") {
-    errorsArray["regUnError"] = "Username Can't be empty";
-    showError(e.target, errorText, errorsArray["regUnError"]);
-    return;
-  }
-
-  if (!regUn.value.match(/^[A-z0-9]+$/)) {
-    errorsArray["regUnError"] =
-      "Username Must be Alphanumeric Characters Only Without Spaces";
-    showError(e.target, errorText, errorsArray["regUnError"]);
-    return;
-  }
-
-  if (regUn.value.length < 5 || regUn.value.length > 25) {
-    errorsArray["regUnError"] = "Username Must be between 5 & 25 Characters";
-    showError(e.target, errorText, errorsArray["regUnError"]);
-    return;
-  }
-
-  if (checkUnTakenResult === "taken") {
-    errorsArray["regUnError"] = "This Username is Already Taken";
-
-    showError(e.target, errorText, errorsArray["regUnError"]);
-    return;
-  }
-  delete errorsArray["regUnError"];
-  showError(e.target, errorText, errorsArray["regUnError"]);
-}
-
-function showError(input, errorText, error) {
-  errorText.innerText = error;
-  if (error === undefined) {
-    input.classList.remove("errorInput");
-    errorText.style.display = "none";
-  } else {
-    input.classList.add("errorInput");
-    errorText.style.display = "block";
-  }
-}
-
 /* EVENTS */
 
 inputs.forEach((input) => {
@@ -112,11 +64,16 @@ inputs.forEach((input) => {
   input.addEventListener("focusout", inputFocusOutHandler);
 });
 
-regUn.addEventListener("focusout", regUnValidation);
+regUn.addEventListener("focusout", regValidation.validateRegUn);
+regFn.addEventListener("focusout", regValidation.validateRegFn);
+regLn.addEventListener("focusout", regValidation.validateRegLn);
+regEmail1.addEventListener("focusout", regValidation.validateRegEmail1);
+regEmail2.addEventListener("focusout", regValidation.validateRegEmail2);
+regPw1.addEventListener("focusout", regValidation.validateRegPw1);
+regPw2.addEventListener("focusout", regValidation.validateRegPw2);
 
 logSwitcher.addEventListener("click", logSwitcherHandler);
 regSwitcher.addEventListener("click", regSwitcherHandler);
 
-regForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-});
+regForm.addEventListener("submit", regValidation.submitRegister);
+logForm.addEventListener("submit", logValidation.submitLogin);

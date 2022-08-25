@@ -56,6 +56,10 @@ form {
   border: 3px solid red;
 }
 
+.formInput.rightInput {
+  border: 3px solid green;
+}
+
 .formInput:focus {
   border: 3px solid black;
 }

@@ -10,6 +10,4 @@ $sttmnt->execute();
 
 echo $sttmnt->rowCount();
 
-/* print_r($sttmnt->fetchAll()); */
-
 ?>
