@@ -1,5 +1,10 @@
 <?php
 
+require("../connection.php");
+session_start();
+
+$un_email = $_SESSION['username_email'];
+
 $errors = array();
 
 
@@ -25,7 +30,8 @@ if($FileSize > 10000000) {
     return;
 }
 
-$fileDestination = "../../imgs/uploadedPics/" . uniqid() . $fileName;
+$newName = uniqid() . $fileName;
+$fileDestination = "../../imgs/uploadedPics/" . $newName;
 
 if(!file_exists("../../imgs/uploadedPics")) {
     mkdir("../../imgs/uploadedPics");
@@ -33,6 +39,8 @@ if(!file_exists("../../imgs/uploadedPics")) {
 
 if(count($errors) === 0) {
     move_uploaded_file($fileTempName,$fileDestination);
+
+    $sttmnt = $con->query("UPDATE users SET profile_pic = './assets/imgs/uploadedPics/${newName}' WHERE username = '$un_email' or email = '$un_email'");
     echo json_encode($errors);
 }
 

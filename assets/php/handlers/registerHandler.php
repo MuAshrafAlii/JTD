@@ -6,7 +6,7 @@ $firstName = $_POST['regFn'];
 $lastName = $_POST['regLn'];
 $email = $_POST['regEmail1'];
 $password = password_hash($_POST['regPw1'], PASSWORD_DEFAULT);
-$profilePicPath = __DIR__ . "/../../imgs/uploadedPics/defaultPP.jpg";
+$profilePicPath = "./assets/imgs/uploadedPics/defaultPP.jpg";
 
 
 
@@ -23,7 +23,7 @@ $sttmnt->execute();
 
 session_start();
 
-$_SESSION['username'] = $username;
+$_SESSION['username_email'] = $username;
 
 echo "sent";
 

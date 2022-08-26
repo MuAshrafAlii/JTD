@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./assets/css/login_register.css" />
 
     <script src="./assets/logic/login_register.js" defer type="module"></script>
-    <title>JTD - Register</title>
+    <title>JTD - Login</title>
   </head>
   <body>
     <div class="formOuterContainer">

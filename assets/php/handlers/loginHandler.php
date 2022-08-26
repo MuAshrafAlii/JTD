@@ -8,7 +8,7 @@ $pwSubmitted = $_POST['logPw'];
 $passwordQuery = $con->query("SELECT password FROM users WHERE username = '$logUn_email' OR email = '$logUn_email'");
 
 
-$dbPw = $passwordQuery->fetch()[0] ?? '';
+$dbPw = $passwordQuery->fetch()['password'] ?? '';
 
 
 
@@ -17,8 +17,9 @@ $sttmnt->bindParam(":logUn", $logUn_email);
 $sttmnt->bindParam(":logEmail", $logUn_email);
 $sttmnt->execute();
 
-if(password_verify($pwSubmitted,$dbPw)) {
-    $_SESSION['username'] = $logUn_email;
+if(password_verify($pwSubmitted,$dbPw) && $sttmnt->rowCount() > 0) {
+    session_start();
+    $_SESSION['username_email'] = $logUn_email;
     echo "found user";
 }
 else {
