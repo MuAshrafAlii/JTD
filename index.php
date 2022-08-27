@@ -16,7 +16,7 @@
       </div>
       <div class="commentDetails">
         <div class="ppContainer">
-          <img src="./assets/imgs/188210.jpg" alt="Img" class="pp" />
+          <img src="" alt="Img" class="pp" />
         </div>
         <div class="nameContainer">
           <h1 class="accName">Hamdy Kata</h1>
@@ -37,7 +37,7 @@
 
     <div class="currCmntContainer">
       <div class="imgContainer">
-        <img src="./assets/imgs/uploadedPics/defaultPP.jpg" alt="Img" class="currImg" />
+        <img src="" alt="Img" class="currImg" />
         <form class="uploadForm" enctype="multipart/form-data">
           <input type="file" name="imgUploaded" id="uploadInput" />
           <label for="uploadInput" class="uploadBtn">+</label>
