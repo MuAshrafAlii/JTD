@@ -10,7 +10,7 @@ $profilePicPath = "./assets/imgs/uploadedPics/defaultPP.jpg";
 
 
 
-$sttmnt = $con->prepare("INSERT INTO users VALUES ('',:un,:fn,:ln,:em,:pw,:pp)");
+$sttmnt = $con->prepare("INSERT INTO users (username,first_name,last_name,email,password,profile_pic) VALUES (:un,:fn,:ln,:em,:pw,:pp)");
 
 $sttmnt->bindParam(":un", $username);
 $sttmnt->bindParam(":fn", $firstName);
@@ -24,7 +24,5 @@ $sttmnt->execute();
 session_start();
 
 $_SESSION['username_email'] = $username;
-
-echo "sent";
 
 ?>

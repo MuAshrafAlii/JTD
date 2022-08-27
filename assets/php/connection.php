@@ -1,12 +1,12 @@
 <?php
-/* $dbUsername = "iIlnb5AXXG";
+$dbUsername = "iIlnb5AXXG";
 $dbPassword = "FxeJChwiaY";
 $dbName = "iIlnb5AXXG";
-$host = "remotemysql.com"; */
-$dbUsername = "root";
+$host = "remotemysql.com";
+/* $dbUsername = "root";
 $dbPassword = "";
 $dbName = "jtd";
-$host = "localhost";
+$host = "localhost"; */
 
 try {
 $con = new PDO("mysql:host=${host};dbname=${dbName}",$dbUsername,$dbPassword, [

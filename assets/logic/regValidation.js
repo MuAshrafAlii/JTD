@@ -258,7 +258,7 @@ export function submitRegister(e) {
   validateRegPw2();
 
   if (Object.keys(regErrorsArray).length === 0) {
-    sendRegDataToServer().then(() => {
+    sendRegDataToServer().then((res) => {
       location.href = "index.php";
     });
   }

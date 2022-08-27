@@ -15,6 +15,4 @@ $insertQuery->bindParam(":comment", $comment);
 
 $insertQuery -> execute();
 
-echo "tmam ya zmeely";
-
 ?>

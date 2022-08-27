@@ -41,42 +41,55 @@ function getCmntsFromServer() {
   );
 }
 
+function getCurrDetails() {
+  return fetch("./assets/php/handlers/getCurrDetailsHandler.php").then((res) =>
+    res.json().then((res) => res)
+  );
+}
+
 async function showComments() {
-  let commentsAPI = await getCmntsFromServer(),
-    currentUserId = commentsAPI[0].id;
-  console.log("commentsAPI");
-  currImg.src = commentsAPI[0].profile_pic;
+  let commentsAPI = await getCmntsFromServer();
+  let currDetails = await getCurrDetails();
 
-  commentsAPI.forEach((comment) => {
-    let newContainer = commentContainer.cloneNode(true),
-      newProfilePic = newContainer.querySelector(".pp"),
-      newName = newContainer.querySelector(".accName"),
-      newCmnt = newContainer.querySelector(".cmnt");
-    newContainer.style.display = "grid";
+  currImg.src = currDetails.profile_pic;
+  if (commentsAPI.length > 0) {
+    let currentUserId = currDetails.id;
+    currImg.src = currDetails.profile_pic;
 
-    if (comment.id === currentUserId) {
-      newContainer.classList.add("curr");
-    }
+    commentsAPI.forEach((comment) => {
+      let newContainer = commentContainer.cloneNode(true),
+        newProfilePic = newContainer.querySelector(".pp"),
+        newName = newContainer.querySelector(".accName"),
+        newCmnt = newContainer.querySelector(".cmnt");
+      newContainer.style.display = "grid";
 
-    newProfilePic.src = comment.profile_pic;
-    newProfilePic.alt = comment.first_name + " " + comment.last_name;
-    newProfilePic.title = comment.first_name + " " + comment.last_name;
-    newName.innerText = comment.first_name + " " + comment.last_name;
-    newCmnt.innerText = comment.comment;
+      if (comment.id === currentUserId) {
+        newContainer.classList.add("curr");
+      }
 
-    outerCmntsContainer.appendChild(newContainer);
-  });
+      newProfilePic.src = comment.profile_pic;
+      newProfilePic.alt = comment.first_name + " " + comment.last_name;
+      newProfilePic.title = comment.first_name + " " + comment.last_name;
+      newName.innerText = comment.first_name + " " + comment.last_name;
+      newCmnt.innerText = comment.comment;
+
+      outerCmntsContainer.appendChild(newContainer);
+    });
+  }
 }
 
 function editHandler(e) {
   if (e.target.classList.contains("edit")) {
     let cmntElement = e.path[2].querySelector(".cmnt");
     let checkImg = e.path[2].querySelector(".checkImgContainer");
-
     checkImg.style.display = "block";
     cmntElement.contentEditable = true;
     cmntElement.focus();
-    oldCmnt = cmntElement.innerText;
+
+    if (!cmntElement.classList.contains("active")) {
+      cmntElement.classList.add("active");
+      oldCmnt = cmntElement.innerText;
+    }
   }
 }
 
@@ -85,6 +98,8 @@ function submitEditHandler(e) {
     let newcmnt;
     let cmntElement = e.path[3].querySelector(".cmnt"),
       checkImg = e.path[2].querySelector(".checkImgContainer");
+
+    cmntElement.classList.remove("active");
 
     checkImg.style.display = "none";
     cmntElement.contentEditable = false;

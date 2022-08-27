@@ -4,7 +4,7 @@
   padding: 30px 20px;
   margin: 10px 0px 20px;
   font-weight: 900;
-  font-size: 60px;
+  font-size: 50px;
   background-color: #48cae4;
 }
 
@@ -73,6 +73,10 @@
   font-size: 25px;
   width: 100%;
   padding: 15px;
+}
+
+.cmnt > div {
+  text-align: left;
 }
 
 .checkImgContainer {
