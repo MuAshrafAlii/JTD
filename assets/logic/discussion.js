@@ -130,10 +130,11 @@ function deleteComment(e) {
   if (e.target.classList.contains("delete")) {
     let cmntContainer = e.path[2],
       cmnt = cmntContainer.querySelector(".cmnt"),
-      assure = window.confirm("Are you sure you want to delete this comment?");
+      assure = window.confirm("Are you sure you want to delete this comment?"),
+      cmntTobeDeleted = oldCmnt ? oldCmnt : cmnt.innerText;
 
     if (assure) {
-      deleteCommentFromServer(cmnt.innerText);
+      deleteCommentFromServer(cmntTobeDeleted);
       cmntContainer.remove();
     }
   }
